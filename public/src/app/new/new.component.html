@@ -1,0 +1,42 @@
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+<div class="container">
+    <div *ngFor="let error of errors">
+        <p class="error">{{error}}</p>
+    </div>
+
+    <form #myForm="ngForm" (submit)="create()" *ngIf="product.errors" class="adding">
+        <div class="form-group row">
+          <div *ngIf="product.errors.name" class="alert alert-danger">{{ product.errors.name.message }}</div>
+          <label for="name" class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-10">
+            <input type="text" required minlength="3" class="form-control-plaintext" id="name" [(ngModel)]="product.name" name="product.name">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div *ngIf="product.errors.qty" class="alert alert-danger">{{ product.errors.qty.message }}</div>
+          <label for="qty" class="col-sm-2 col-form-label">Qty</label>
+          <div class="col-sm-10">
+            <input type="number" min="0" required class="form-control-plaintext" id="qty" [(ngModel)]="product.qty" name="product.qty">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div *ngIf="product.errors.price" class="alert alert-danger">{{ product.errors.price.message }}</div>
+          <label for="price" class="col-sm-2 col-form-label">Price</label>
+          <div class="col-sm-10">
+            <input type="number" min="1.0" step="0.1" required  class="form-control-plaintext" id="price" [(ngModel)]="product.price" name="product.price">
+          </div>
+        </div>
+
+        <input type="submit" [disabled]="!myForm.valid" class="btn btn-primary"  value="Create" />
+        <input type="submit" class="btn btn-primary" value="Back" />
+      </form>
+    
+        
+
+   
+</div>

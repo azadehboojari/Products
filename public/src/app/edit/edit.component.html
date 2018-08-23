@@ -1,0 +1,36 @@
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+ 
+    
+<div *ngIf="product" class="container">
+        <div *ngFor="let error of product.errors">
+            <p class="error">{{error}}</p>
+        </div>
+    <form (submit)="update()" *ngIf="!product.error" class="updating">
+            
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" required minlength="3"class="form-control" id="name" placeholder="{{product.name}}" [(ngModel)]="product.name" name="product.name">
+        </div>
+          
+        <div class="form-group">
+            
+            <label for="type">Qty</label>
+            <input type="float"  min="-1" required class="form-control" id="type"
+            placeholder="{{product.qty}}"
+             [(ngModel)]="product.qty" name="product.qty">
+        </div>
+        <div class="form-group">
+            <label for="type">Price</label>
+            <input type="number" required min="1.0" step="0.1" required class="form-control" id="type"
+            placeholder="{{product.price}}"
+             [(ngModel)]="product.price" name="product.price">
+        </div>
+          
+          <input type="submit"  class="btn btn-primary" value="UPDATE" />
+          <button class="btn btn-primary" onClick="window.location.reload()">RESET</button>
+      </form>
+      
+</div>
